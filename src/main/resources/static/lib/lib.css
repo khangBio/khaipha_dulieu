@@ -1,0 +1,239 @@
+/* control error */
+.control-invalid {
+    border-color: #e40c0c !important;
+}
+
+/* fix select2 */
+.select2-search--inline:before {
+    top: 6px !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+    min-width: 85px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #1f73e6;
+    color: white;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #1f73e6;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #1f73e6 !important;
+}
+
+.select2-dropdown {
+    border: 1px solid #1f73e6;
+}
+
+.select2-container--open .select2-dropdown {
+    top: -1px;
+}
+
+.select2-results__option {
+    border-bottom: 1px solid #1f73e624;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px;
+    color: #0a1b29;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 13px;
+}
+
+/* fix lable control */
+.form-label-top.focus .label-text,
+.form-label-top.active .label-text {
+    height: 14px;
+}
+
+.select-custom:after {
+    display: none;
+}
+
+/* paging table*/
+.vnpt-paging {
+    display: inline-block;
+    width: 100%;
+}
+
+.vnpt-paging .wapper {
+    display: inline-block;
+    width: 100%;
+}
+
+.vnpt-paging .paging-size {
+    float: left;
+    width: 40%;
+    line-height: 32px;
+}
+
+.vnpt-paging .paging-size.hiden-pg {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.vnpt-paging .paging-size .form-group {
+    min-width: 55px;
+    width: auto;
+}
+
+.vnpt-paging .paging-size .form-control {
+    height: 30px;
+    line-height: 16px !important;
+    padding-right: 5px;
+}
+
+.vnpt-paging .paging-size .form-control .caret{
+    margin-left: 5px;
+}
+
+.vnpt-paging .paging-size .dropdown-menu{
+    min-width: 100%;
+}
+
+.vnpt-paging .paging-control {
+    float: left;
+    width: 60%;
+    line-height: 32px;
+    text-align: right;
+    /* padding-right: 2px; */
+}
+
+.vnpt-paging .p-m-r-5 {
+    margin-right: 5px;
+}
+
+.vnpt-paging .item-control {
+    display: inline-block;
+    border: solid 1px #ccc;
+    border-right: none;
+    /* margin: 0 -2px; */
+}
+
+.vnpt-paging .item-control:last-child {
+    border-right: solid 1px #ccc;
+}
+
+.vnpt-paging .item-control:hover {
+    background-color: #337ab7;
+}
+
+.vnpt-paging .item-control.active {
+    background-color: #337ab7;
+    pointer-events: none;
+}
+
+.vnpt-paging .item-control.disable {
+    background-color: #ccc;
+    pointer-events: none;
+}
+
+.vnpt-paging .item-control a {
+    padding: 8px 10px;
+    color: rgb(54, 53, 53);
+}
+
+.vnpt-paging .item-control.active a {
+    color: white;
+    padding: 8px 11px;
+}
+
+.vnpt-paging .select2-container--default .select2-selection--single {
+	height: 30px !important;
+}
+
+.vnpt-paging .select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 30px;
+}
+
+.vnpt-underline-well-read {
+    text-decoration: underline;
+    color: #903938;
+    cursor: pointer;
+}
+
+.vnpt-underline-blue {
+    text-decoration: underline;
+    color: #903938;
+    cursor: pointer;
+}
+
+.vnpt-input-info {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    outline: none;
+    color: #0a6aa1;
+}
+
+.checkbox-round {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-round:checked {
+    background-color: #4e82ff;
+    border: 3px solid #ddd;
+}
+
+table.tableBodyScroll tbody {
+    display: block;
+    overflow: scroll;
+}
+
+table.tableBodyScroll thead, table.tableBodyScroll tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table.tableBodyScroll thead, table.tableBodyScroll tbody tr td.stt {
+    width: 60px;
+}
+
+
+
+/*table, th, td {*/
+/*    border: 1px solid black;*/
+/*    border-collapse: collapse;*/
+/*}*/
+/*th, td {*/
+/*    padding: 1px;*/
+/*    text-align: left;*/
+/*    border: 1px solid black;*/
+/*}*/
+.borders-active {
+    border: 1px solid #615454;
+    margin: 2px;
+    height: 100px;
+    display: flex;
+    box-shadow: 0px 1px 4px 2px;
+}
+
+.borders-suppend {
+    border: 1px solid gray;
+    margin: 2px;
+    height: 100px;
+    display: flex;
+}
+.width-200px {
+    width: 200px;
+    border: 1px solid black;
+}
+.height-100px {
+    height: 25px;
+}
