@@ -1,2 +1,2 @@
-# khaipha_dulieu
-app predict exam cores of student
+# csdl_nangcao
+Nhóm 1 - CSDL Nâng Cao - Bán hàng
