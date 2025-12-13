@@ -956,3 +956,56 @@ td .radio {
     color: #5b6fd8;
     font-weight: 600;
 }
+/*panel*/
+:root{
+    --panel-bg: #ffffff;
+    --panel-border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --shadow: 0 10px 25px rgba(0,0,0,.08);
+    --radius: 14px;
+}
+
+.panel{
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden; /* bo góc cho header/footer */
+}
+
+.panel__header{
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--panel-border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+}
+
+.panel__title{
+    margin:0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.panel__subtitle{
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.panel__body{
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.panel__footer{
+    padding: 14px 18px;
+    border-top: 1px solid var(--panel-border);
+    display:flex;
+    justify-content:flex-end;
+    gap: 10px;
+}
