@@ -22,7 +22,7 @@ public class Demo {
     }
 
     public static void main(String[] args) throws Exception {
-        Convert("data-ori.csv", "data-ori.arff");
+        Convert("insurance.csv", "insurance.arff");
     }
 
 }

@@ -2,13 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<head>
+    <jsp:include page="app-js.jsp"/>
+</head>
 <div class="box">
     <div class="box-body">
         <h1 class="main-title">THÔNG TIN CHỈ SỐ XÉT NGHIỆM CỦA BỆNH NHÂN</h1>
-        <form id="formThongTinBenhNhan">
-            <div class="row" hidden="hidden">
-                <input type="number" id="idKhachHang"/>
-            </div>
+        <form id="formModel">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <section class="panel" id="model-a">
@@ -53,6 +53,11 @@
                         </div>
                     </section>
                 </div>
+            </div>
+        </form>
+        <form id="formThongTinBenhNhan">
+            <div class="row" hidden="hidden">
+                <input type="number" id="idKhachHang"/>
             </div>
             <div class="row">
                 <div class="col-sm-2 col-xs-12">
@@ -124,7 +129,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group form-label-top">
                         <div class="label-text">Điều trị(SOURCE)</div>
-                        <select class="form-control" name="sex" id="sex">
+                        <select class="form-control" name="source" id="source">
                             <option value="in" selected>In (Nội trú)</option>
                             <option value="out">Out (Ngoại trú)</option>
                         </select>
