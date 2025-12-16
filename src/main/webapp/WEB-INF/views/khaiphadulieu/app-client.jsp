@@ -28,12 +28,64 @@
                                     </div>
                                 </div>
                             </div>
-                            <p><b>Accuracy:</b> Nguyễn Văn A</p>
-                            <p><b>Tuổi:</b> 45</p>
-                            <p><b>Ghi chú:</b> Đây là nội dung panel. Bạn có thể thay bằng form, bảng, hoặc danh sách</p>
+                            <div class="row">
+                                <div class="col-sm-5 col-xs-12" id="chiso-danhgia-model">
+                                    <p><b>Accuracy:</b>N/A</p>
+                                    <p><b>Kappa:</b>N/A</p>
+                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
+                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-12">
+                                    <table class="table tableBodyScroll">
+                                        <thead style="min-width: calc(80vw - 1040px);">
+                                            <tr>
+                                                <th class="colf-status-center">Confusion Matrix</th>
+                                                <th class="colf-status-center">out</th>
+                                                <th class="colf-status-center">in</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="confusion-matrix" style="max-height: calc(100vh - 360px);">
+                                            <tr class="tr-list">
+                                                <td class="colf-status-center">out</td>
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                            </tr>
+                                            <tr class="tr-list">
+                                                <td class="colf-status-center">in</td>
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <table class="table tableBodyScroll">
+                                        <thead style="min-width: calc(100vw - 1040px);">
+                                            <tr>
+                                                <th class="colf-status-center">Precision</th>
+                                                <th class="colf-status-center">Recall</th>
+                                                <th class="colf-status-center">F-Measure</th>
+                                                <th class="colf-status-center">ROC Area</th>
+                                                <th class="colf-status-center">Class</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="detailed-accuracy" style="max-height: calc(100vh - 360px);">
+                                            <tr class="tr-list">
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                                <td class="colf-status-center">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel__footer">
-                            <button class="btn btn--primary" onclick="initModelDecisionTree()">Run</button>
+                            <button type="button" class="btn btn--primary" onclick="initModelDecisionTree()">Run</button>
                         </div>
                     </section>
                 </div>

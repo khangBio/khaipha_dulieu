@@ -50,18 +50,70 @@
             });
             return;
         }
-        lib.post({
+        lib.getApi({
             url: $("#PageContext").val() + '/do-model-decission-tree',
             data: {
                 percentage: percentage
             },
             complete: function (response) {
                 $("#formModel").uiLoading(false);
-                let res = response.responseJSON;
+                let res = response;
+                renderKetQuaModel(res);
+                renderConfusionMatrix(res);
+                renderDetailedAccuracy(res);
             },
             error: function (ex) {
                 $("#formModel").uiLoading(false);
             }
         });
+
+        function renderKetQuaModel(res){
+            $("#chiso-danhgia-model").empty();
+            $("#chiso-danhgia-model").append('' +
+                '<p><b>Accuracy:</b> ' + res.accuracy.toFixed(3) + '</p>' +
+                '<p><b>Kappa:</b> ' + res.kappa.toFixed(3) + '</p>'+
+                '<p><b>Mean Absolute Error (MAE):</b> ' + res.meanAbsoluteError.toFixed(3) + '</p>'+
+                '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>');
+        }
+
+        function renderConfusionMatrix(res){
+            let confusionMatrix = res.confusionMatrix;
+            let outa = confusionMatrix[0];
+            let inb = confusionMatrix[1];
+
+            $("#confusion-matrix").empty();
+            $("#confusion-matrix").append('' +
+                '<tr class="tr-list">'+
+                    '<td class="colf-status-center">out</td>'+
+                    '<td class="colf-status-center">' + outa[0] + '</td>'+
+                    '<td class="colf-status-center">' + outa[1] + '</td>'+
+                '</tr>'+
+                '<tr class="tr-list">'+
+                    '<td class="colf-status-center">in</td>'+
+                    '<td class="colf-status-center">' + inb[0] + '</td>'+
+                    '<td class="colf-status-center">' + inb[1] + '</td>'+
+                '</tr>');
+        }
+
+        function renderDetailedAccuracy(res){
+            let preOut = res.classMetrics.out;
+            let preIn = res.classMetrics.in;
+            $("#detailed-accuracy").empty();
+            $("#detailed-accuracy").append('' +
+                '<tr class="tr-list">'+
+                    '<td class="colf-status-center">' + preOut.precision.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preOut.recall.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preOut.f1.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preOut.roc.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">out</td>'+
+                '</tr>' +
+                '<tr class="tr-list">'+
+                    '<td class="colf-status-center">' + preIn.precision.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preIn.recall.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preIn.f1.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">' + preIn.roc.toFixed(3) + '</td>'+
+                    '<td class="colf-status-center">in</td>'+
+                '</tr>');
+        }
     }
 </script>

@@ -6,9 +6,7 @@ import com.csdl.group_one.services.DecisionTreeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,12 +22,12 @@ public class WebController {
         return "home"; //WEB-INF/views/home.jsp
     }
 
-    @RequestMapping(value = "/do-model-decission-tree", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDecicsionTree doModelDecissionTree(HttpServletRequest request) throws Exception {
+    @GetMapping(value = "/do-model-decission-tree")
+    public ResponseDecicsionTree doModelDecissionTree(@RequestParam(value = "percentage", defaultValue = "70") String percentage) throws Exception {
         ResponseDecicsionTree response = new ResponseDecicsionTree();
-        int percentage = Integer.parseInt(request.getParameter("percentage"));
-        response = decisionTreeServices.initModelDecisionTree(percentage);
+        int percentageNum = Integer.parseInt(percentage);
+        response = decisionTreeServices.initModelDecisionTree(percentageNum);
         return response;
     }
 }
