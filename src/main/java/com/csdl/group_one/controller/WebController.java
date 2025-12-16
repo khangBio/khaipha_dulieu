@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class WebController {
     @Autowired
@@ -24,9 +26,10 @@ public class WebController {
 
     @RequestMapping(value = "/do-model-decission-tree", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseDecicsionTree doModelDecissionTree() throws Exception {
+    public ResponseDecicsionTree doModelDecissionTree(HttpServletRequest request) throws Exception {
         ResponseDecicsionTree response = new ResponseDecicsionTree();
-        response = decisionTreeServices.initModelDecisionTree();
+        int percentage = Integer.parseInt(request.getParameter("percentage"));
+        response = decisionTreeServices.initModelDecisionTree(percentage);
         return response;
     }
 }

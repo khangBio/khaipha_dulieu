@@ -7,27 +7,33 @@
 </head>
 <div class="box">
     <div class="box-body">
-        <h1 class="main-title">THÔNG TIN CHỈ SỐ XÉT NGHIỆM CỦA BỆNH NHÂN</h1>
+        <h1 class="main-title">Patient Treatment Classification</h1>
         <form id="formModel">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <section class="panel" id="model-a">
                         <div class="panel__header">
                             <div>
-                                <h2 class="panel__title">Thông tin bệnh nhân</h2>
-                                <p class="panel__subtitle">Cập nhật lần cuối: 12/12/2025</p>
+                                <h2 class="panel__title">Decission Tree</h2>
+                                <p class="panel__subtitle">Cập nhật lần cuối: 20/12/2025</p>
                             </div>
                             <span style="font-size:12px;color:#2563eb;font-weight:700;">ACTIVE</span>
                         </div>
-                        <div class="panel__body">
-                            <p><b>Họ tên:</b> Nguyễn Văn A</p>
+                        <div class="panel__body" id="decission-tree-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group form-label-top">
+                                        <div class="label-text">Percentage Split Train (%)<span class="text-danger"> *</span></div>
+                                        <input class="form-control" type="number" name="percentage-split-train" id="percentage-split-train" value="" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <p><b>Accuracy:</b> Nguyễn Văn A</p>
                             <p><b>Tuổi:</b> 45</p>
-                            <p><b>Ghi chú:</b> Đây là nội dung panel. Bạn có thể thay bằng form, bảng, hoặc danh sách.</p>
+                            <p><b>Ghi chú:</b> Đây là nội dung panel. Bạn có thể thay bằng form, bảng, hoặc danh sách</p>
                         </div>
-
                         <div class="panel__footer">
-                            <button class="btn">Hủy</button>
-                            <button class="btn btn--primary">Lưu</button>
+                            <button class="btn btn--primary" onclick="initModelDecisionTree()">Run</button>
                         </div>
                     </section>
                 </div>

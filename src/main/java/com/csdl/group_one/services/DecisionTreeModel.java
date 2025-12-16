@@ -18,7 +18,8 @@ import java.util.Random;
 @Service
 public class DecisionTreeModel implements DecisionTreeServices{
 
-    public ResponseDecicsionTree initModelDecisionTree() throws Exception {
+    public ResponseDecicsionTree initModelDecisionTree(int percentage) throws Exception {
+        int percentageTest = 100 - percentage;
         // 1. Load dữ liệu
         CSVLoader loader = new CSVLoader();
         loader.setSource(new File("data-ori.csv"));
@@ -38,13 +39,13 @@ public class DecisionTreeModel implements DecisionTreeServices{
 
         // 3. Tạo tập TRAIN (70%)
         RemovePercentage trainFilter = new RemovePercentage();
-        trainFilter.setPercentage(30); // remove 30% → giữ lại 70%
+        trainFilter.setPercentage(percentageTest); // remove 30% → giữ lại 70%
         trainFilter.setInputFormat(dataColumFilter);
         Instances trainData = Filter.useFilter(dataColumFilter, trainFilter);
 
         // 4. Tạo tập TEST (30%)
         RemovePercentage testFilter = new RemovePercentage();
-        testFilter.setPercentage(30);
+        testFilter.setPercentage(percentageTest);
         testFilter.setInvertSelection(true); // lấy 30% bị loại
         testFilter.setInputFormat(dataColumFilter);
         Instances testData = Filter.useFilter(dataColumFilter, testFilter);

@@ -38,4 +38,30 @@
 <script src="${pageContext.request.contextPath}/resources/custom-uiux/custom.js?v=1.1"></script>
 <script src="${pageContext.request.contextPath}/resources/style-dancu/vendor/highchart/highcharts.js"></script>
 <%--<script src="/notification/resources/notify.js?v=2"></script>--%>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+
+    });
+    function initModelDecisionTree() {
+        let percentage = $("#percentage-split-train").val() ? $("#percentage-split-train").val() : 0;
+        if (percentage <= 0) {
+            lib.showMessage('Vui lòng nhập tỉ lệ tập train!', 'error', function () {
+                //
+            });
+            return;
+        }
+        lib.post({
+            url: $("#PageContext").val() + '/do-model-decission-tree',
+            data: {
+                percentage: percentage
+            },
+            complete: function (response) {
+                $("#formModel").uiLoading(false);
+                let res = response.responseJSON;
+            },
+            error: function (ex) {
+                $("#formModel").uiLoading(false);
+            }
+        });
+    }
+</script>
