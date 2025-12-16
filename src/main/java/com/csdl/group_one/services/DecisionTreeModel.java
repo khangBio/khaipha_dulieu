@@ -1,18 +1,24 @@
-package com.csdl.group_one.model;
+package com.csdl.group_one.services;
 
+import com.csdl.group_one.dto.ResponseDecicsionTree;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
-import weka.core.pmml.jaxbbindings.DecisionTree;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.instance.RemovePercentage;
 import weka.core.SerializationHelper;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Random;
-public class DecisionTreeModel {
-    public static void initModelDecisionTree() throws Exception {
+
+@Service
+public class DecisionTreeModel implements DecisionTreeServices{
+
+    public ResponseDecicsionTree initModelDecisionTree() throws Exception {
         // 1. Load dữ liệu
         CSVLoader loader = new CSVLoader();
         loader.setSource(new File("data-ori.csv"));
@@ -65,8 +71,28 @@ public class DecisionTreeModel {
         System.out.println(eval.toSummaryString());
         System.out.println(eval.toClassDetailsString());
         System.out.println(eval.toMatrixString());
-    }
-    public static void main(String[] args) throws Exception {
-        initModelDecisionTree();
+        ResponseDecicsionTree response = new ResponseDecicsionTree();
+        response.setAccuracy(eval.pctCorrect());
+        response.setKappa(eval.kappa());
+        response.setMeanAbsoluteError(eval.meanAbsoluteError());
+        response.setMeanSquaredError(eval.rootMeanSquaredError());
+
+        // Class metrics
+        response.classMetrics = new HashMap<>();
+        for (int i = 0; i < data.numClasses(); i++) {
+            ResponseDecicsionTree.ClassMetric classMetric = new ResponseDecicsionTree.ClassMetric();
+            classMetric.setPrecision( eval.precision(i));
+            classMetric.setRecall(eval.recall(i));
+            classMetric.setF1(eval.fMeasure(i));
+            classMetric.setRoc(eval.areaUnderROC(i));
+
+            response.classMetrics.put(data.classAttribute().value(i), classMetric);
+        }
+
+        // Confusion matrix
+        response.setConfusionMatrix(eval.confusionMatrix());
+        response.setClassLabels(new String[]{"OUT", "IN"});
+
+        return response;
     }
 }

@@ -1,4 +1,4 @@
-package com.csdl.group_one.model;
+package com.csdl.group_one.services;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
 
