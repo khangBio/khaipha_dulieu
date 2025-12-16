@@ -1,23 +1,31 @@
 package com.csdl.group_one.services;
 
+import com.csdl.group_one.dto.PatientInfoDTO;
+import com.csdl.group_one.dto.PredictionResultDTO;
 import com.csdl.group_one.dto.ResponseDecicsionTree;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
+import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.instance.RemovePercentage;
 import weka.core.SerializationHelper;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @Service
 public class DecisionTreeModel implements DecisionTreeServices{
 
+    @Override
     public ResponseDecicsionTree initModelDecisionTree(int percentage) throws Exception {
         int percentageTest = 100 - percentage;
         // 1. Load dữ liệu
@@ -95,5 +103,36 @@ public class DecisionTreeModel implements DecisionTreeServices{
         response.setClassLabels(new String[]{"OUT", "IN"});
 
         return response;
+    }
+
+    @Override
+    public PredictionResultDTO predictNewInstance(PatientInfoDTO patientInfo) throws Exception {
+        J48 modeTree = (J48) SerializationHelper.read("decision_tree_data_ori.model");
+
+        // Load structure (ARFF header dùng khi train)
+        Instances modelStructure = new Instances(new BufferedReader(new FileReader("header.arff")));
+        modelStructure.setClassIndex(modelStructure.numAttributes() - 1);
+
+        // Create new instance
+        DenseInstance instance = new DenseInstance(modelStructure.numAttributes());
+        instance.setDataset(modelStructure);
+        instance.setValue(0, patientInfo.getHaematocrit());
+        instance.setValue(1, patientInfo.getHaemoglobins());
+        instance.setValue(2, patientInfo.getErythrocyte());
+        instance.setValue(3, patientInfo.getLeucocyte());
+        instance.setValue(4, patientInfo.getThrombocyte());
+        instance.setValue(5, patientInfo.getMch());
+        instance.setValue(6, patientInfo.getMchc());
+        instance.setValue(7, patientInfo.getMcv());
+        instance.setValue(8, patientInfo.getAge());
+
+        // Predict
+        double clsIndex = modeTree.classifyInstance(instance);
+        double[] dist = modeTree.distributionForInstance(instance);
+
+        PredictionResultDTO result = new PredictionResultDTO();
+        result.setPredictedClass(modelStructure.classAttribute().value((int) clsIndex));;
+        result.setProbability(dist[(int) clsIndex]);
+        return result;
     }
 }

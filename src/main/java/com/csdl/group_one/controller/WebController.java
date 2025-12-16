@@ -1,5 +1,7 @@
 package com.csdl.group_one.controller;
 
+import com.csdl.group_one.dto.PatientInfoDTO;
+import com.csdl.group_one.dto.PredictionResultDTO;
 import com.csdl.group_one.dto.ResponseDecicsionTree;
 import com.csdl.group_one.services.DecisionTreeModel;
 import com.csdl.group_one.services.DecisionTreeServices;
@@ -29,5 +31,11 @@ public class WebController {
         int percentageNum = Integer.parseInt(percentage);
         response = decisionTreeServices.initModelDecisionTree(percentageNum);
         return response;
+    }
+
+    @ResponseBody
+    @PostMapping("/predict-result")
+    public PredictionResultDTO predictResult(@RequestBody PatientInfoDTO patientInfoDTO) throws Exception {
+        return decisionTreeServices.predictNewInstance(patientInfoDTO);
     }
 }
