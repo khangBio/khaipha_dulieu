@@ -61,7 +61,7 @@ public class DecisionTreeModel implements DecisionTreeServices{
 
         // 6. Đánh giá mô hình trên TEST set
         Evaluation eval = new Evaluation(trainData);
-        eval.crossValidateModel(tree, data, 10, new Random(1));
+//        eval.crossValidateModel(tree, testData, 10, new Random(1));
         eval.evaluateModel(tree, testData);
 
         // 7. In kết quả
