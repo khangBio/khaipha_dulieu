@@ -3,7 +3,6 @@ package com.csdl.group_one.services;
 import com.csdl.group_one.dto.PatientInfoDTO;
 import com.csdl.group_one.dto.PredictionResultDTO;
 import com.csdl.group_one.dto.ResponseDecicsionTree;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
@@ -19,11 +18,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 @Service
-public class DecisionTreeModel implements DecisionTreeServices{
+public class DecisionTreeModel implements DecisionTreeServices {
 
     @Override
     public ResponseDecicsionTree initModelDecisionTree(int percentage) throws Exception {

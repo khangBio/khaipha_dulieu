@@ -5,6 +5,28 @@
 <head>
     <jsp:include page="app-js.jsp"/>
 </head>
+<style>
+    .table-fixed {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* QUAN TRỌNG */
+    }
+
+    .table-fixed thead {
+        position: sticky;
+        top: 0;
+        background: #f8e9df;
+        z-index: 2;
+    }
+
+    .table-fixed th,
+    .table-fixed td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: 20%; /* 5 cột → mỗi cột 20% */
+    }
+</style>
 <div class="box">
     <div class="box-body">
         <h1 class="main-title">Patient Treatment Classification</h1>
@@ -15,6 +37,7 @@
                         <div class="panel__header">
                             <div>
                                 <h2 class="panel__title">Decission Tree</h2>
+                                <p class="panel__subtitle">Mô tả: Cây quyết định</p>
                                 <p class="panel__subtitle">Cập nhật lần cuối: 20/12/2025</p>
                             </div>
                             <span style="font-size:12px;color:#2563eb;font-weight:700;">ACTIVE</span>
@@ -46,8 +69,8 @@
                                     <p><b>Mean Squared Error (MSE):</b>N/A</p>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
-                                    <table class="table tableBodyScroll">
-                                        <thead style="min-width: calc(80vw - 1040px);">
+                                    <table class="table table-fixed">
+                                        <thead>
                                             <tr>
                                                 <th class="colf-status-center">Confusion Matrix</th>
                                                 <th class="colf-status-center">out</th>
@@ -71,8 +94,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <table class="table tableBodyScroll">
-                                        <thead style="min-width: calc(100vw - 1040px);">
+                                    <table class="table table-fixed">
+                                        <thead>
                                             <tr>
                                                 <th class="colf-status-center">Precision</th>
                                                 <th class="colf-status-center">Recall</th>
@@ -100,24 +123,92 @@
                     </section>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <section class="panel" id="model-b">
+                    <section class="panel" id="model-a">
                         <div class="panel__header">
                             <div>
-                                <h2 class="panel__title">Thông tin bệnh nhân</h2>
-                                <p class="panel__subtitle">Cập nhật lần cuối: 12/12/2025</p>
+                                <h2 class="panel__title">Random Forest</h2>
+                                <p class="panel__subtitle">Mô tả: Rừng ngẫu nhiên</p>
+                                <p class="panel__subtitle">Cập nhật lần cuối: 20/12/2025</p>
                             </div>
                             <span style="font-size:12px;color:#2563eb;font-weight:700;">ACTIVE</span>
                         </div>
-
-                        <div class="panel__body">
-                            <p><b>Họ tên:</b> Nguyễn Văn A</p>
-                            <p><b>Tuổi:</b> 45</p>
-                            <p><b>Ghi chú:</b> Đây là nội dung panel. Bạn có thể thay bằng form, bảng, hoặc danh sách.</p>
+                        <div class="panel__body" id="random-forest-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group form-label-top">
+                                        <div class="label-text">Percentage Split Train (%)<span class="text-danger"> *</span></div>
+                                        <input class="form-control" type="number" name="rf-percentage-split-train" id="rf-percentage-split-train" value="" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-12"></div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-title">KẾT QUẢ DỰ ĐOÁN</div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="rf-predict-patient-class">
+                                    <p style="font-size: 14px; color: #2563eb"><b>Decision Tree: </b> ?</p>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="rf-predict-probability">
+                                    <p style="font-size: 14px; color: #2563eb"><b>Probability: </b> ?%</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 col-xs-12" id="rf-chiso-danhgia-model">
+                                    <p><b>Accuracy:</b>N/A</p>
+                                    <p><b>Kappa:</b>N/A</p>
+                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
+                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-12">
+                                    <table class="table table-fixed">
+                                        <thead>
+                                        <tr>
+                                            <th class="colf-status-center">Confusion Matrix</th>
+                                            <th class="colf-status-center">out</th>
+                                            <th class="colf-status-center">in</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="rf-confusion-matrix" style="max-height: calc(100vh - 360px);">
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">out</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">in</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <table class="table table-fixed">
+                                        <thead>
+                                        <tr>
+                                            <th class="colf-status-center">Precision</th>
+                                            <th class="colf-status-center">Recall</th>
+                                            <th class="colf-status-center">F-Measure</th>
+                                            <th class="colf-status-center">ROC Area</th>
+                                            <th class="colf-status-center">Class</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="rf-detailed-accuracy" style="max-height: calc(100vh - 360px);">
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="panel__footer">
-                            <button class="btn">Hủy</button>
-                            <button class="btn btn--primary">Lưu</button>
+                            <button type="button" class="btn btn--primary" onclick="initModelRandomForest()">Run</button>
                         </div>
                     </section>
                 </div>
@@ -188,7 +279,7 @@
                 <div class="col-sm-2 col-xs-12">
                     <div class="form-group form-label-top">
                         <div class="label-text">Giới tính (SEX)</div>
-                        <select class="form-control" name="sex" id="sex">
+                        <select class="form-control" name="sex" id="sex" disabled="disabled">
                             <option value="F" selected>FeMale</option>
                             <option value="M">Male</option>
                         </select>
@@ -197,7 +288,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group form-label-top">
                         <div class="label-text">Điều trị(SOURCE)</div>
-                        <select class="form-control" name="source" id="source">
+                        <select class="form-control" name="source" id="source" disabled="disabled">
                             <option value="in" selected>In (Nội trú)</option>
                             <option value="out">Out (Ngoại trú)</option>
                         </select>
@@ -228,32 +319,5 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
-<div class="box pad20">
-    <div class="table-content">
-        <table class="table tableBodyScroll">
-            <thead style="min-width: calc(100vw - 345px);">
-            <tr>
-                <th class="stt text-center">
-                    <input type="checkbox" name="selectAll-danhSachHoaDonKhachHang" class="select-all-rows"
-                           childref="row-in-danhSachHoaDonKhachHang" />
-                </th>
-                <th class="stt text-center">STT</th>
-                <th class="colf-ho-ten">Số hóa đơn</th>
-                <th class="colf-date">Ngày hóa đơn</th>
-                <th class="colf-ho-ten">Họ tên khách hàng</th>
-                <th class="colf-date">Ngày sinh</th>
-                <th class="colf-large text-center">Số<br>CMND/CCCD/ĐDCN</th>
-                <th class="colf-large text-center">Số điện thoại</th>
-                <th class="colf-xl-large">email</th>
-                <th class="colf-xl-large">Địa chỉ</th>
-                <th class="colf-status text-center">Trạng thái</th>
-                <th class="colf-xxl-large text-center">Thao tác</th>
-            </tr>
-            </thead>
-            <tbody name="danhSachHoaDonKhachHang" id="danhSachHoaDonKhachHang" style="max-height: calc(100vh - 360px);">
-            </tbody>
-        </table>
     </div>
 </div>
