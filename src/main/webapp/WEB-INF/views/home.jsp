@@ -5,7 +5,7 @@
 <html lang="vi">
 <spring:eval expression="@environment.getProperty('applicationName')" var="applicationName"/>
 <head>
-    <title class="title">Nhóm 1 - CSDL Nâng Cao</title>
+    <title class="title">Patient Treatment Classification</title>
     <meta charset="utf-8"/>
     <meta name="keywords" content="It, it solution,solution, techonogy,internet"/>
     <link href="https://plus.google.com/107177373712004256296" rel="author">

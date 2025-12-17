@@ -5,6 +5,8 @@ import com.csdl.group_one.dto.PredictionResultDTO;
 import com.csdl.group_one.dto.ResponseDecicsionTree;
 import com.csdl.group_one.services.DecisionTreeModel;
 import com.csdl.group_one.services.DecisionTreeServices;
+import com.csdl.group_one.utils.EJson;
+import com.csdl.group_one.utils.ResponseBodyJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 public class WebController {
     @Autowired
     DecisionTreeServices decisionTreeServices;
+    @Autowired
+    public ResponseBodyJson responseBodyJson;
 
     @RequestMapping("/nhom-1")
     public String home(Model model) {
@@ -35,7 +39,12 @@ public class WebController {
 
     @ResponseBody
     @PostMapping("/predict-result")
-    public PredictionResultDTO predictResult(@RequestBody PatientInfoDTO patientInfoDTO) throws Exception {
-        return decisionTreeServices.predictNewInstance(patientInfoDTO);
+    public String predictResult(@RequestBody PatientInfoDTO patientInfoDTO) throws Exception {
+        final EJson responseJson = responseBodyJson.newEJson();
+        PredictionResultDTO predictionResultDTO = decisionTreeServices.predictNewInstance(patientInfoDTO);
+        responseJson.put("predictedclass", predictionResultDTO);
+        responseJson.put("errorCode", 200);
+        responseJson.put("errorMessage", "Success!");
+        return responseJson.success();
     }
 }

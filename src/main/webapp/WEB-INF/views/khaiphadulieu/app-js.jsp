@@ -116,4 +116,51 @@
                 '</tr>');
         }
     }
+
+    function predictPatient(){
+        $("#formThongTinBenhNhan").resetValidation();
+        var checkValid = $("#formThongTinBenhNhan").validation({
+            required: {
+                erythrocyte: "Chỉ số ERYTHROCYTE không được trống!",
+                haematocrit: "Chỉ số HAEMATOCRIT không được trống!",
+                haemoglobins: "Chỉ số HAEMOGLOBINS không được trống!",
+                leucocyte: "Chỉ số LEUCOCYTE không được trống!",
+                thrombocyte: "Chỉ số THROMBOCYTE không được trống!",
+                mch: "Chỉ số LEUCOCYTE không được trống!",
+                mchc: "Chỉ số MCHC không được trống!",
+                mcv: "Chỉ số MCV không được trống!",
+                age: "AGE không được trống!",
+            }
+        });
+        if (!checkValid.isValid) {
+            $("#formThongTinBenhNhan").bindError(checkValid);
+            return;
+        }
+        $("#formThongTinBenhNhan").formTextTrim();
+        var jsonData = $("#formThongTinBenhNhan").getValue();
+        lib.post({
+            url: $("#PageContext").val() + "/predict-result",
+            data: JSON.stringify(jsonData),
+            beforePost:function(){
+                $("#formThongTinBenhNhan").uiLoading(true);
+            },
+            complete: function (response) {
+                let result = response.responseJSON.predictedclass;
+                let probability = (result.probability * 100).toFixed(2) + '%';
+                $("#formThongTinBenhNhan").uiLoading(false);
+                $("#predict-patient-class").empty();
+                $("#predict-patient-class").append('' +
+                    '<p style="font-size: 14px; color: #2563eb">' +
+                    '<b>Decision Tree:</b> ' + result.predictedClass + '</p>');
+
+                $("#predict-probability").empty();
+                $("#predict-probability").append('' +
+                    '<p style="font-size: 14px; color: #2563eb">' +
+                    '<b>Probability: </b>' + probability + '</p>');
+            },
+            error: function (ex) {
+                $("#formThongTinBenhNhan").uiLoading(false);
+            }
+        });
+    }
 </script>

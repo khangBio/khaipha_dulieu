@@ -133,6 +133,8 @@ public class DecisionTreeModel implements DecisionTreeServices{
         PredictionResultDTO result = new PredictionResultDTO();
         result.setPredictedClass(modelStructure.classAttribute().value((int) clsIndex));;
         result.setProbability(dist[(int) clsIndex]);
+        System.out.println("========= Prediction Result =========");
+        System.out.println(result.toString());
         return result;
     }
 }

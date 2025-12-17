@@ -27,6 +27,16 @@
                                         <input class="form-control" type="number" name="percentage-split-train" id="percentage-split-train" value="" autocomplete="off">
                                     </div>
                                 </div>
+                                <div class="col-sm-1 col-xs-12"></div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-title">KẾT QUẢ DỰ ĐOÁN</div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="predict-patient-class">
+                                    <p style="font-size: 14px; color: #2563eb"><b>Decision Tree: </b> ?</p>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="predict-probability">
+                                    <p style="font-size: 14px; color: #2563eb"><b>Probability: </b> ?%</p>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-5 col-xs-12" id="chiso-danhgia-model">
@@ -199,25 +209,11 @@
                 <div class="box-body">
                     <div class="center">
                         <ul class="menu-list-item">
-                            <li class="item-menu not-show-on-editing" id="btn_cap_nhat_khach_hang">
+                            <li class="item-menu not-show-on-editing" id="btn_predict">
                                 <a href="javascript:;" class="btn btn-main"
-                                   onclick="themMoiKhachHang('them')">
+                                   onclick="predictPatient()">
                                     <span class="icon nc-icon-outline ui-1_edit-71"></span>
-                                    Ghi thông tin
-                                </a>
-                            </li>
-                            <li class="item-menu not-show-on-editing" id="btn_search_data">
-                                <a href="javascript:;" class="btn btn-main"
-                                   onclick="traCuuDanhSachHoBienDong('traCuuBienDong')">
-                                    <span class="icon nc-icon-outline ui-1_zoom"></span>
-                                    Tìm kiếm
-                                </a>
-                            </li>
-                            <li class="item-menu not-show-on-editing" id="btn-tao-hoa-don">
-                                <a href="javascript:;" class="btn btn-main"
-                                   onclick="themMoiDonHang('them')">
-                                    <span class="icon nc-icon-outline ui-1_bold-add"></span>
-                                    Ghi hóa đơn
+                                    Dự đoán
                                 </a>
                             </li>
                             <li class="item-menu not-show-on-editing" id="btn-huy-thong-tin">
@@ -232,5 +228,32 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<div class="box pad20">
+    <div class="table-content">
+        <table class="table tableBodyScroll">
+            <thead style="min-width: calc(100vw - 345px);">
+            <tr>
+                <th class="stt text-center">
+                    <input type="checkbox" name="selectAll-danhSachHoaDonKhachHang" class="select-all-rows"
+                           childref="row-in-danhSachHoaDonKhachHang" />
+                </th>
+                <th class="stt text-center">STT</th>
+                <th class="colf-ho-ten">Số hóa đơn</th>
+                <th class="colf-date">Ngày hóa đơn</th>
+                <th class="colf-ho-ten">Họ tên khách hàng</th>
+                <th class="colf-date">Ngày sinh</th>
+                <th class="colf-large text-center">Số<br>CMND/CCCD/ĐDCN</th>
+                <th class="colf-large text-center">Số điện thoại</th>
+                <th class="colf-xl-large">email</th>
+                <th class="colf-xl-large">Địa chỉ</th>
+                <th class="colf-status text-center">Trạng thái</th>
+                <th class="colf-xxl-large text-center">Thao tác</th>
+            </tr>
+            </thead>
+            <tbody name="danhSachHoaDonKhachHang" id="danhSachHoaDonKhachHang" style="max-height: calc(100vh - 360px);">
+            </tbody>
+        </table>
     </div>
 </div>
