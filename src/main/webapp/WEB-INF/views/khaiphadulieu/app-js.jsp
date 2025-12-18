@@ -205,6 +205,28 @@
                 mchc: "Chỉ số MCHC không được trống!",
                 mcv: "Chỉ số MCV không được trống!",
                 age: "AGE không được trống!",
+            },
+            min: {
+                haematocrit: {value: 13.7 , message: "Chỉ số HAEMATOCRIT không được nhỏ hơn 13.7"},
+                haemoglobins: {value: 3.8 , message: "Chỉ số HAEMOGLOBINS không được nhỏ hơn 3.8"},
+                erythrocyte: {value: 1.48 , message: "Chỉ số ERYTHROCYTE không được nhỏ hơn 1.48"},
+                leucocyte: {value: 1.1 , message: "Chỉ số LEUCOCYTE không được nhỏ hơn 1.1"},
+                thrombocyte: {value: 8 , message: "Chỉ số THROMBOCYTE không được nhỏ hơn 8"},
+                mch: {value: 14.9 , message: "Chỉ số MCH không được nhỏ hơn 14.9"},
+                mchc: {value: 26 , message: "Chỉ số MCHC không được nhỏ hơn 26"},
+                mcv: {value: 54 , message: "Chỉ số MCV không được nhỏ hơn 54"},
+                age: {value: 1 , message: "Chỉ số AGE không được nhỏ hơn 1"},
+            },
+            max: {
+                haematocrit: {value: 69 , message: "Chỉ số HAEMATOCRIT không được lớn hơn 69"},
+                haemoglobins: {value: 19.8 , message: "Chỉ số HAEMOGLOBINS không được lớn hơn 19.8"},
+                erythrocyte: {value: 7.86 , message: "Chỉ số ERYTHROCYTE không được lớn hơn 7.86"},
+                leucocyte: {value: 76.6 , message: "Chỉ số LEUCOCYTE không được nhỏ lớn hơn 76.6"},
+                thrombocyte: {value: 1183 , message: "Chỉ số THROMBOCYTE không được lớn hơn 1183"},
+                mch: {value: 40.8 , message: "Chỉ số MCH không được lớn hơn 40.8"},
+                mchc: {value: 39 , message: "Chỉ số MCHC không được lớn hơn 39"},
+                mcv: {value: 116 , message: "Chỉ số MCV không được lớn hơn 116"},
+                age: {value: 99 , message: "Chỉ số AGE không được lớn hơn 99"},
             }
         });
         if (!checkValid.isValid) {
@@ -251,6 +273,20 @@
             error: function (ex) {
                 $("#formThongTinBenhNhan").uiLoading(false);
             }
+        });
+    }
+
+    function huyThongTin(){
+        $("#formThongTinBenhNhan").pathValue({
+            haematocrit: 0,
+            haemoglobins: 0,
+            erythrocyte: 0,
+            leucocyte: 0,
+            thrombocyte: 0,
+            mch: 0,
+            mchc: 0,
+            mcv: 0,
+            age: 0,
         });
     }
 </script>
