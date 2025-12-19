@@ -1,11 +1,9 @@
 package com.csdl.group_one.controller;
 
-import com.csdl.group_one.dto.PatientInfoDTO;
-import com.csdl.group_one.dto.PredictionResultDTO;
-import com.csdl.group_one.dto.ResponseDecicsionTree;
-import com.csdl.group_one.dto.ResponseRandomForest;
+import com.csdl.group_one.dto.*;
 import com.csdl.group_one.services.DecisionTreeServices;
 import com.csdl.group_one.services.RandomForestServices;
+import com.csdl.group_one.services.SVMServices;
 import com.csdl.group_one.utils.EJson;
 import com.csdl.group_one.utils.ResponseBodyJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,9 @@ public class WebController {
 
     @Autowired
     RandomForestServices randomForestServices;
+
+    @Autowired
+    SVMServices svmServices;
 
     @Autowired
     public ResponseBodyJson responseBodyJson;
@@ -46,8 +47,10 @@ public class WebController {
         final EJson responseJson = responseBodyJson.newEJson();
         PredictionResultDTO predictionResultDTO = decisionTreeServices.predictNewInstance(patientInfoDTO);
         PredictionResultDTO preResultRandomForest = randomForestServices.predictNewInstanceRF(patientInfoDTO);
+        PredictionResultDTO preResultSVM = svmServices.predictNewInstanceSVM(patientInfoDTO);
         responseJson.put("predictedclass", predictionResultDTO);
         responseJson.put("predictedclassRF", preResultRandomForest);
+        responseJson.put("predictedclassSVM", preResultSVM);
         responseJson.put("errorCode", 200);
         responseJson.put("errorMessage", "Success!");
         return responseJson.success();
@@ -59,6 +62,15 @@ public class WebController {
         ResponseRandomForest response = new ResponseRandomForest();
         int percentageNum = Integer.parseInt(percentage);
         response = randomForestServices.initRandomForestModel(percentageNum);
+        return response;
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/do-model-svm")
+    public ResponseSVM doModelSVM(@RequestParam(value = "percentage", defaultValue = "70") String percentage) throws Exception {
+        ResponseSVM response = new ResponseSVM();
+        int percentageNum = Integer.parseInt(percentage);
+        response = svmServices.initSVMModel(percentageNum);
         return response;
     }
 }
