@@ -32,7 +32,7 @@
         <h1 class="main-title">Patient Treatment Classification</h1>
         <form id="formModel">
             <div class="row">
-                <div class="col-sm-6 col-xs-12">
+                <div class="col-sm-4 col-xs-12">
                     <section class="panel" id="model-a">
                         <div class="panel__header">
                             <div>
@@ -67,6 +67,7 @@
                                     <p><b>Kappa:</b>N/A</p>
                                     <p><b>Mean Absolute Error (MAE):</b>N/A</p>
                                     <p><b>Mean Squared Error (MSE):</b>N/A</p>
+                                    <p><b>Train Time:</b> <span id="dt-build-time" style="color: #d63384">?</span> s</p>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <table class="table table-fixed">
@@ -122,7 +123,7 @@
                         </div>
                     </section>
                 </div>
-                <div class="col-sm-6 col-xs-12">
+                <div class="col-sm-4 col-xs-12">
                     <section class="panel" id="model-a">
                         <div class="panel__header">
                             <div>
@@ -157,6 +158,7 @@
                                     <p><b>Kappa:</b>N/A</p>
                                     <p><b>Mean Absolute Error (MAE):</b>N/A</p>
                                     <p><b>Mean Squared Error (MSE):</b>N/A</p>
+                                    <p><b>Train Time:</b> <span id="rf-build-time" style="color: #d63384">?</span> s</p>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <table class="table table-fixed">
@@ -209,6 +211,97 @@
                         </div>
                         <div class="panel__footer">
                             <button type="button" class="btn btn--primary" onclick="initModelRandomForest()">Run</button>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <section class="panel" id="model-svm">
+                        <div class="panel__header">
+                            <div>
+                                <h2 class="panel__title">SVM (SMO)</h2>
+                                <p class="panel__subtitle">Mô tả: Support Vector Machine</p>
+                                <p class="panel__subtitle">Cập nhật lần cuối: 20/12/2025</p>
+                            </div>
+                            <span style="font-size:12px;color:#2563eb;font-weight:700;">ACTIVE</span>
+                        </div>
+                        <div class="panel__body" id="svm-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group form-label-top">
+                                        <div class="label-text">Train Split (%)<span class="text-danger"> *</span></div>
+                                        <input class="form-control" type="number" name="svm-percentage-split-train" id="svm-percentage-split-train" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-title">KẾT QUẢ DỰ ĐOÁN</div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="svm-predict-patient-class">
+                                    <p style="font-size: 14px; color: #2563eb"><b>SVM: </b> ?</p>
+                                </div>
+                                <div class="col-sm-2 col-xs-12" id="svm-predict-probability">
+                                    <p style="font-size: 14px; color: #2563eb"><b>Probability: </b> ?%</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-5 col-xs-12" id="svm-chiso-danhgia-model">
+                                    <p><b>Accuracy:</b> N/A</p>
+                                    <p><b>Kappa:</b> N/A</p>
+                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
+                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
+                                    <p><b>Train Time:</b> <span id="svm-build-time" style="color: #d63384">?</span> s</p>
+                                </div>
+                                <div class="col-sm-7 col-xs-12">
+                                    <table class="table table-fixed">
+                                        <thead>
+                                        <tr>
+                                            <th class="colf-status-center">Confusion Matrix</th>
+                                            <th class="colf-status-center">out</th>
+                                            <th class="colf-status-center">in</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="svm-confusion-matrix">
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">out</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">in</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <table class="table table-fixed">
+                                        <thead>
+                                        <tr>
+                                            <th class="colf-status-center">Precision</th>
+                                            <th class="colf-status-center">Recall</th>
+                                            <th class="colf-status-center">F-Measure</th>
+                                            <th class="colf-status-center">ROC Area</th>
+                                            <th class="colf-status-center">Class</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="svm-detailed-accuracy">
+                                        <tr class="tr-list">
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                            <td class="colf-status-center">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel__footer">
+                            <button type="button" class="btn btn--primary" onclick="initModelSVM()">Run SVM</button>
                         </div>
                     </section>
                 </div>
@@ -305,6 +398,11 @@
                                    onclick="predictPatient()">
                                     <span class="icon nc-icon-outline ui-1_edit-71"></span>
                                     Dự đoán
+                                </a>
+                            </li>
+                            <li class="item-menu not-show-on-editing">
+                                <a href="javascript:;" class="btn btn-primary" style="background-color: #17a2b8; border-color: #17a2b8;" onclick="fillDefaultData()">
+                                    <span class="icon nc-icon-outline ui-1_simple-add"></span> Dữ liệu mẫu
                                 </a>
                             </li>
                             <li class="item-menu not-show-on-editing" id="btn-huy-thong-tin">

@@ -10,6 +10,7 @@ public class ResponseRandomForest {
     public Map<String, ResponseDecicsionTree.ClassMetric> classMetrics;
     private double[][] confusionMatrix;
     private String[] classLabels;
+    private double buildTime;
 
     public static class ClassMetric {
         private double precision;
@@ -105,4 +106,7 @@ public class ResponseRandomForest {
     public void setClassLabels(String[] classLabels) {
         this.classLabels = classLabels;
     }
+
+    public double getBuildTime() { return buildTime; }
+    public void setBuildTime(double buildTime) { this.buildTime = buildTime; }
 }

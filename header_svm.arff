@@ -1,0 +1,15 @@
+@relation data-ori-weka.filters.unsupervised.attribute.Remove-R10
+
+@attribute HAEMATOCRIT numeric
+@attribute HAEMOGLOBINS numeric
+@attribute ERYTHROCYTE numeric
+@attribute LEUCOCYTE numeric
+@attribute THROMBOCYTE numeric
+@attribute MCH numeric
+@attribute MCHC numeric
+@attribute MCV numeric
+@attribute AGE numeric
+@attribute SOURCE {out,in}
+
+@data
+
