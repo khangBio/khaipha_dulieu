@@ -73,8 +73,9 @@
                 '<p><b>Accuracy:</b> ' + res.accuracy.toFixed(3) + '</p>' +
                 '<p><b>Kappa:</b> ' + res.kappa.toFixed(3) + '</p>'+
                 '<p><b>Mean Absolute Error (MAE):</b> ' + res.meanAbsoluteError.toFixed(3) + '</p>'+
-                '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>');
-        }
+                '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>') +
+                '<p><b>Train Time:</b> <span style="color: #d63384; font-weight: bold;">' + res.buildTime + '</span> s</p>'
+        };
 
         function renderConfusionMatrix(res){
             let confusionMatrix = res.confusionMatrix;
@@ -148,8 +149,9 @@
                 '<p><b>Accuracy:</b> ' + res.accuracy.toFixed(3) + '</p>' +
                 '<p><b>Kappa:</b> ' + res.kappa.toFixed(3) + '</p>'+
                 '<p><b>Mean Absolute Error (MAE):</b> ' + res.meanAbsoluteError.toFixed(3) + '</p>'+
-                '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>');
-        }
+                '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>') +
+                '<p><b>Train Time:</b> <span style="color: #d63384; font-weight: bold;">' + res.buildTime + '</span> s</p>'
+        };
 
         function renderConfusionMatrix(res){
             let confusionMatrix = res.confusionMatrix;
@@ -211,7 +213,8 @@
                     '<p><b>Accuracy:</b> ' + res.accuracy.toFixed(3) + '</p>' +
                     '<p><b>Kappa:</b> ' + res.kappa.toFixed(3) + '</p>' +
                     '<p><b>Mean Absolute Error (MAE):</b> ' + res.meanAbsoluteError.toFixed(3) + '</p>' +
-                    '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>'
+                    '<p><b>Mean Squared Error (MSE):</b> ' + res.meanSquaredError.toFixed(3) + '</p>' +
+                    '<p><b>Train Time:</b> <span style="color: #d63384; font-weight: bold;">' + res.buildTime + '</span> s</p>'
                 );
 
                 // Render Confusion Matrix (Copy logic từ hàm cũ, đổi ID selector)

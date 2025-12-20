@@ -61,7 +61,10 @@ public class RandomForestModel implements RandomForestServices {
         rf.setNumIterations(300);      // tương ứng option -I (num trees)
 //        rf.setNumFeatures(0);     // 0 = mặc định sqrt/log2 tuỳ Weka
         rf.setMaxDepth(0);        // 0 = unlimited (tương ứng option -depth 0)
+        long startTime = System.currentTimeMillis();
         rf.buildClassifier(trainData);
+        long endTime = System.currentTimeMillis();
+        double totalTime = (endTime - startTime) / 1000.0;
         SerializationHelper.write("random_forest_data_ori.model", rf); /*Save model*/
 
         // 6. Đánh giá mô hình trên TEST set
@@ -80,6 +83,7 @@ public class RandomForestModel implements RandomForestServices {
         rsf.setKappa(eval.kappa());
         rsf.setMeanAbsoluteError(eval.meanAbsoluteError());
         rsf.setMeanSquaredError(eval.rootMeanSquaredError());
+        rsf.setBuildTime(totalTime);
 
         // Class metrics
         rsf.classMetrics = new HashMap<>();

@@ -51,6 +51,9 @@ public class SVMModel implements SVMServices{
 
         // Tạo thuật toán SVM (SMO)
         SMO svm = new SMO();
+        // Thay vì dùng svm.setBuildLogisticModels(true); ta dùng setOptions
+        String[] options = {"-M"};
+        svm.setOptions(options);
         // Có thể cấu hình thêm kernel nếu muốn (mặc định là PolyKernel)
         // svm.setKernel(new weka.classifiers.functions.supportVector.RBFKernel());
         fc.setClassifier(svm);
@@ -64,7 +67,10 @@ public class SVMModel implements SVMServices{
         Instances test = new Instances(dataNoSex, trainSize, testSize);
 
         // 5. Train Model
+        long startTime = System.currentTimeMillis();
         fc.buildClassifier(train);
+        long endTime = System.currentTimeMillis();
+        double totalTime = (endTime - startTime) / 1000.0;
 
         // 6. Đánh giá Model
         Evaluation eval = new Evaluation(train);
@@ -90,6 +96,7 @@ public class SVMModel implements SVMServices{
         response.setAccuracy(eval.pctCorrect()); // Độ chính xác (%)
         response.setKappa(eval.kappa());         // Hệ số Kappa
         response.setMeanAbsoluteError(eval.meanAbsoluteError()); // MAE
+        response.setBuildTime(totalTime);
 
         // Tính MSE từ RMSE
         double rmse = eval.rootMeanSquaredError();

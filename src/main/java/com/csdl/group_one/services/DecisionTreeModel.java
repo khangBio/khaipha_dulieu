@@ -62,7 +62,10 @@ public class DecisionTreeModel implements DecisionTreeServices {
         tree.setMinNumObj(2);            // min samples per leaf
         tree.setUnpruned(false);         // bật cắt tỉa
 
+        long startTime = System.currentTimeMillis();
         tree.buildClassifier(trainData);
+        long endTime = System.currentTimeMillis();
+        double totalTime = (endTime - startTime) / 1000.0;
         SerializationHelper.write("decision_tree_data_ori.model", tree); /*Save model*/
 
         // 6. Đánh giá mô hình trên TEST set
@@ -83,6 +86,7 @@ public class DecisionTreeModel implements DecisionTreeServices {
         response.setKappa(eval.kappa());
         response.setMeanAbsoluteError(eval.meanAbsoluteError());
         response.setMeanSquaredError(eval.rootMeanSquaredError());
+        response.setBuildTime(totalTime);
 
         // Class metrics
         response.classMetrics = new HashMap<>();
