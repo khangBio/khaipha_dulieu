@@ -65,9 +65,9 @@
                                 <div class="col-sm-5 col-xs-12" id="chiso-danhgia-model">
                                     <p><b>Accuracy:</b>N/A</p>
                                     <p><b>Kappa:</b>N/A</p>
-                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
-                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
-                                    <p><b>Train Time:</b> <span id="dt-build-time" style="color: #d63384">?</span> s</p>
+<%--                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>--%>
+<%--                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>--%>
+<%--                                    <p><b>Train Time:</b> <span id="dt-build-time" style="color: #d63384">?</span> s</p>--%>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <table class="table table-fixed">
@@ -156,9 +156,9 @@
                                 <div class="col-sm-5 col-xs-12" id="rf-chiso-danhgia-model">
                                     <p><b>Accuracy:</b>N/A</p>
                                     <p><b>Kappa:</b>N/A</p>
-                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
-                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
-                                    <p><b>Train Time:</b> <span id="rf-build-time" style="color: #d63384">?</span> s</p>
+<%--                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>--%>
+<%--                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>--%>
+<%--                                    <p><b>Train Time:</b> <span id="rf-build-time" style="color: #d63384">?</span> s</p>--%>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <table class="table table-fixed">
@@ -247,9 +247,9 @@
                                 <div class="col-sm-5 col-xs-12" id="svm-chiso-danhgia-model">
                                     <p><b>Accuracy:</b> N/A</p>
                                     <p><b>Kappa:</b> N/A</p>
-                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>
-                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>
-                                    <p><b>Train Time:</b> <span id="svm-build-time" style="color: #d63384">?</span> s</p>
+<%--                                    <p><b>Mean Absolute Error (MAE):</b>N/A</p>--%>
+<%--                                    <p><b>Mean Squared Error (MSE):</b>N/A</p>--%>
+<%--                                    <p><b>Train Time:</b> <span id="svm-build-time" style="color: #d63384">?</span> s</p>--%>
                                 </div>
                                 <div class="col-sm-7 col-xs-12">
                                     <table class="table table-fixed">
