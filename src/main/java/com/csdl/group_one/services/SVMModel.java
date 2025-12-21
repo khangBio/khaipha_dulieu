@@ -42,7 +42,7 @@ public class SVMModel implements SVMServices{
         Instances dataNoSex = Filter.useFilter(data, remove);
 
         // 3. Cấu hình FilteredClassifier (Normalize + SVM)
-        // Tự động chuẩn hóa [0,1]
+        // Đây là bước quan trọng nhất cho SVM: Tự động chuẩn hóa [0,1]
         FilteredClassifier fc = new FilteredClassifier();
 
         // Tạo bộ lọc Normalize
